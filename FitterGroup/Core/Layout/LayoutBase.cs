@@ -83,7 +83,8 @@ namespace UnityEngine.UI.FitterGroup
 
             ResetVisualScope();
             m_LastMaxIndex = m_CurrentMinIndex;
-
+            m_LastMinIndex = m_CurrentMaxIndex;
+            
             Tick();
         }
 
@@ -99,10 +100,10 @@ namespace UnityEngine.UI.FitterGroup
         {
             for (int i = m_LastMinIndex; i < m_CurrentMinIndex; i++)
                 DisableItem(i);
-            for (int i = m_CurrentMinIndex; i <= m_LastMinIndex; i++)
+            for (int i = Mathf.Max(m_CurrentMinIndex,0); i < m_LastMinIndex; i++)
                 EnableItem(i);
 
-            for (int i = m_LastMaxIndex; i <= m_CurrentMaxIndex; i++)
+            for (int i = Mathf.Max(m_LastMaxIndex,0); i <= m_CurrentMaxIndex; i++)
                 EnableItem(i);
             for (int i = m_CurrentMaxIndex + 1; i <= m_LastMaxIndex; i++)
                 DisableItem(i);
